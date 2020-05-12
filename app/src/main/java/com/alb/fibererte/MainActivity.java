@@ -44,11 +44,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Cáculo Aproximado de Ingresos", Snackbar.LENGTH_LONG)
+                boolean b=new FragmentNormal().ComprobrarEdittext();
+                Log.i("MainACtiv ", String.valueOf(b));
+                String m;
+                if (!b){
+                    m="revisa campos vacios, y vuelve a intentar";
+                }else {
+                    m="Cáculo Aproximado de Ingresos";
+                }
+                Snackbar.make(view, m, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                // ((MainActivity)getActivity()).refrescarListaResinas();
-                 boolean b=new FragmentNormal().ComprobrarEdittext();
-                Log.i("MainACtiv ", String.valueOf(b));
 
             }
         });
@@ -56,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
 }

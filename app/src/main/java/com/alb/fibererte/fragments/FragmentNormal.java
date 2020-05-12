@@ -57,6 +57,8 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
     static EditText editDias;
     static EditText editIrpf;
 
+    double cantidadFiber;
+
     public FragmentNormal() {
         // Required empty public constructor
     }
@@ -279,5 +281,12 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
         } else  {return true;}
 
 
+    }
+
+    public double CalcularFiber(){
+
+
+
+        return cantidadFiber;
     }
 }
