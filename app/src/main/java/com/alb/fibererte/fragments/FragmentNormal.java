@@ -2,11 +2,7 @@ package com.alb.fibererte.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -16,21 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.alb.fibererte.MainActivity;
+import androidx.fragment.app.Fragment;
+
 import com.alb.fibererte.MinMaxFilter;
 import com.alb.fibererte.R;
 
-
-import java.util.Arrays;
-
-import static android.widget.ArrayAdapter.createFromResource;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 /**
@@ -56,6 +47,8 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
     static EditText editQuin;
     static EditText editDias;
     static EditText editIrpf;
+
+    public static String grupoN, turnoN, hijosN, quinN, diasN, irpfN;
 
     double cantidadFiber;
 
@@ -196,12 +189,15 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
             public void afterTextChanged(Editable editable) {
 
                 if(editQuin.getText().hashCode()==editable.hashCode()){
-                    Log.i("EditWuinafterchanged", editQuin.getText().toString());
+                    quinN = editQuin.getText().toString();
+                    Log.i("EditWuinafterchanged", quinN);
                 }
                 else if(editDias.getText().hashCode()==editable.hashCode()){
+                    diasN = editDias.getText().toString();
                     Log.i("EditDiasafterchanged", editDias.getText().toString());
                 }
                 else if(editIrpf.getText().hashCode()==editable.hashCode()){
+                    irpfN = editIrpf.getText().toString();
                     Log.i("EditIrpfafterchanged", editIrpf.getText().toString());
                 }
 
@@ -247,17 +243,21 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
         if(adapterView.getId() == R.id.spinnerGrupo)
         {
             //do this
-            Log.i(TAG, "onItemSelected: SpinnerGrupo " + adapterView.getSelectedItem().toString() + " int"+  i + " lon" +  l );
+            grupoN = adapterView.getSelectedItem().toString();
+            Log.i(TAG, "onItemSelected: SpinnerGrupo " + grupoN + " int" + i + " lon" + l);
+
         }
         else if(adapterView.getId() == R.id.spinnerTurnos)
         {
             //do this
-            Log.i(TAG, "onItemSelected: SpinnerTurnos " + adapterView.getSelectedItem().toString()  + " int"+  i + " lon" +  l );
+            turnoN = adapterView.getSelectedItem().toString();
+            Log.i(TAG, "onItemSelected: SpinnerTurnos " + turnoN + " int" + i + " lon" + l);
         }
         else if(adapterView.getId() == R.id.spinnerHijos)
         {
             //do this
-            Log.i(TAG, "onItemSelected: SpinnerHijos " + adapterView.getSelectedItem().toString()  + " int"+  i + " lon" +  l );
+            hijosN = adapterView.getSelectedItem().toString();
+            Log.i(TAG, "onItemSelected: SpinnerHijos " + hijosN + " int" + i + " lon" + l);
         }
        // Log.i(TAG, "onItemSelected: " + adapterView.getAdapter().toString() + " int"+  i + " lon" +  l );
     }
