@@ -2,6 +2,7 @@ package com.alb.fibererte;
 
 import android.os.Bundle;
 
+import com.alb.fibererte.fragments.FragmentNormal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -9,6 +10,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.alb.fibererte.ui.main.SectionsPagerAdapter;
+
+import static android.app.PendingIntent.getActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,14 +40,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         fab.setOnClickListener(new View.OnClickListener() {
+           
+
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Cáculo Aproximado de Ingresos", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+               // ((MainActivity)getActivity()).refrescarListaResinas();
+                 boolean b=new FragmentNormal().ComprobrarEdittext();
+                Log.i("MainACtiv ", String.valueOf(b));
+
             }
         });
 
 
 
     }
+
+
 }

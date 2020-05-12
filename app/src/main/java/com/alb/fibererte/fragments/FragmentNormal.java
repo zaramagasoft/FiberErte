@@ -53,9 +53,9 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
     Spinner spcat;
     Spinner spturn;
     Spinner sphijos;
-    EditText editQuin;
-    EditText editDias;
-    EditText editIrpf;
+    static EditText editQuin;
+    static EditText editDias;
+    static EditText editIrpf;
 
     public FragmentNormal() {
         // Required empty public constructor
@@ -262,6 +262,22 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+    public boolean ComprobrarEdittext(){
+
+        boolean b=editQuin.getText().toString().isEmpty();
+
+
+
+       if(editIrpf.getText().toString().isEmpty()){
+            return false;
+        }else if(editQuin.getText().toString().isEmpty()){
+            return false;
+        }else if (editDias.getText().toString().isEmpty()){
+            return false;
+        } else  {return true;}
+
 
     }
 }
