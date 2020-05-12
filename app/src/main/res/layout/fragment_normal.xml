@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
+    tools:context=".fragments.FragmentNormal">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+                >
+
+        <TextView
+            android:id="@+id/textGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categoria :  "
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+        <TextView
+            android:id="@+id/textTurnos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="     Turnos:  "
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        <Spinner
+            android:id="@+id/spinnerTurnos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+
+            >
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/textHijos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hijos :  "
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Spinner
+
+                android:id="@+id/spinnerHijos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                >
+
+            </Spinner>
+
+            <TextView
+                android:id="@+id/textQuinquenios"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="   Quinquenios :  "
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editQuinquenios"
+                style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edit_borde"
+                android:digits="1234567"
+                android:duplicateParentState="false"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:layerType="hardware"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:paddingTop="10dp"
+
+                android:paddingBottom="10dp"
+                android:textColor="#8A2424"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+
+        >
+        <TextView
+            android:id="@+id/textDias"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dias Erte:  "
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editDias"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_borde"
+            android:digits="1234567890"
+            android:duplicateParentState="false"
+            android:gravity="center"
+            android:inputType="numberSigned"
+            android:layerType="hardware"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
+            android:textColor="#8A2424"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textIrpf"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" IRPF % :  "
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editirpf"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_borde"
+            android:digits="1234567890"
+            android:duplicateParentState="false"
+            android:gravity="center"
+            android:inputType="numberSigned"
+            android:layerType="hardware"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
+            android:textColor="#8A2424"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+            <TextView
+            android:id="@+id/textSepe"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cantidad SEPE :  "
+            android:textSize="24sp"
+            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textFiber"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cantidad FIBER :  "
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

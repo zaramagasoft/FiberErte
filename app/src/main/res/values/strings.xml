@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">FiberErte Cálculo Nóminas</string>
+    <string name="tab_text_1">Normal</string>
+    <string name="tab_text_2">Reducción</string>
+    <string name="tituloNormal">Nómina Fiber</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="categorias">
+        <item>G1B</item>
+        <item>G2</item>
+        <item>G3</item>
+        <item>G4</item>
+        <item>G5</item>
+    </string-array>
+    <string-array name="turnos">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+
+    </string-array>
+    <string-array name="hijos">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+
+    </string-array>
+</resources>
