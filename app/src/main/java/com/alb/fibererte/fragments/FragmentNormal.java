@@ -150,8 +150,8 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
 
     private void GestionEditText() {
 
-        editQuin.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "6" )}) ;
-        editDias.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "30" )}) ;
+        editQuin.setFilters( new InputFilter[]{ new MinMaxFilter( "0" , "6" )}) ;
+        editDias.setFilters( new InputFilter[]{ new MinMaxFilter( "0" , "30" )}) ;
         editIrpf.setFilters( new InputFilter[]{ new MinMaxFilter( "1" , "25" )}) ;
 
              TextWatcher generalTextWatcher = new TextWatcher() {

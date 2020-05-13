@@ -33,6 +33,14 @@ public class LogicaNormal {
     public LogicaNormal() {
 
     }
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
 
     public double getQuin() {
         return quin;
@@ -172,7 +180,7 @@ public class LogicaNormal {
         this.setDias(Double.parseDouble(diasErte));
         this.setIrpf(Double.parseDouble(irpf));
 
-
+        CalcularPrestaciones();
         return prestaciones;
     }
 
@@ -180,6 +188,15 @@ public class LogicaNormal {
         String[] prestaciones = new String[1];
         //me quedo en calcular prestaciones
 
+        double diasFiber=30;
+        double salarioDia=precioGrupo/420;
+
+        Log.i("salarioDia: ", String.valueOf(round (salarioDia,2)));
+
+        Double salarioBruto=salarioDia*(diasFiber-this.getDias());
+        Log.i("salarioBruto: ", String.valueOf(round (salarioBruto,2)));
+
+        //me quedo en salarioBruto
         return prestaciones;
     }
 
