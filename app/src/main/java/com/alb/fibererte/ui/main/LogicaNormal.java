@@ -196,7 +196,45 @@ public class LogicaNormal {
         Double salarioBruto=salarioDia*(diasFiber-this.getDias());
         Log.i("salarioBruto: ", String.valueOf(round (salarioBruto,2)));
 
-        //me quedo en salarioBruto
+        //salario base
+        double salarioBase = salarioBruto * 0.66;
+        Log.i("salarioBase: ", String.valueOf(round(salarioBase, 2)));
+
+        //incentivos
+        double incentivos = salarioBruto * 0.2;
+        Log.i("incentivos: ", String.valueOf(round(incentivos, 2)));
+
+        //quinquenios
+        double quinquenios = ((salarioDia * 0.02) * getQuin()) * (diasFiber - getDias());
+        // Log.i("incentivosData: ", String.valueOf(round (getDias(),2)));
+        Log.i("incentivos: ", String.valueOf(round(quinquenios, 2)));
+
+        //prima Produccion
+        double prima = salarioBruto * 0.14;
+        Log.i("primaP: ", String.valueOf(round(prima, 2)));
+
+        //plusturnos
+        double plusTurnos = (precioTurno / 30) * (diasFiber - getDias());
+        Log.i("plusTurnos: ", String.valueOf(round(plusTurnos, 2)));
+
+        //total devengado
+        double totalDevengado = salarioBase + incentivos + quinquenios + prima + plusTurnos;
+        Log.i("totalDevengado: ", String.valueOf(round(totalDevengado, 2)));
+
+        //prorrateo
+        double prorrateo = (salarioBase + incentivos + quinquenios + prima) / 6;
+        Log.i("prorrateo: ", String.valueOf(round(prorrateo, 2)));
+
+        //baseCC
+        double baseCC = totalDevengado + prorrateo;
+        Log.i("baseCC: ", String.valueOf(round(baseCC, 2)));
+
+        //baseIrpf
+        double baseIrpf = totalDevengado;
+        Log.i("baseIrpf: ", String.valueOf(round(baseIrpf, 2)));
+
+        //deduciones, aqui me quedo
+
         return prestaciones;
     }
 
