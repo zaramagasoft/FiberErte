@@ -192,7 +192,7 @@ public class LogicaNormal {
         double salarioDia=precioGrupo/420;
 
         Log.i("salarioDia: ", String.valueOf(round (salarioDia,2)));
-
+        double salarioBrutoSepe = salarioDia * 30;
         Double salarioBruto=salarioDia*(diasFiber-this.getDias());
         Log.i("salarioBruto: ", String.valueOf(round (salarioBruto,2)));
 
@@ -205,6 +205,7 @@ public class LogicaNormal {
         Log.i("incentivos: ", String.valueOf(round(incentivos, 2)));
 
         //quinquenios
+        double quinSepe = (salarioDia * 0.02) * getQuin() * 30;
         double quinquenios = ((salarioDia * 0.02) * getQuin()) * (diasFiber - getDias());
         // Log.i("incentivosData: ", String.valueOf(round (getDias(),2)));
         Log.i("quinquenios: ", String.valueOf(round(quinquenios, 2)));
@@ -214,6 +215,7 @@ public class LogicaNormal {
         Log.i("primaP: ", String.valueOf(round(prima, 2)));
 
         //plusturnos
+        double plusSepe = (precioTurno / 30) * 30;
         double plusTurnos = (precioTurno / 30) * (diasFiber - getDias());
         Log.i("plusTurnos: ", String.valueOf(round(plusTurnos, 2)));
 
@@ -243,16 +245,32 @@ public class LogicaNormal {
         Log.i("deducciones: ", String.valueOf(round(deducciones, 2)));
 
         //compensacionERTE
+        double sb = salarioDia * 30;
+        double sbSepe = sb * 0.7;
+        Log.i("sbSepe: ", String.valueOf(round(sbSepe, 2)));
+        ajusteTablasSepe(sbSepe);
 
-
+        //me quedo aqui en compensacion erte, para la compensacion hay que calcular la bcc de 30 dias fiber
         //liquido fibertecnic
 
-        double salarioFiber = totalDevengado - deducciones;
-        Log.i("salarioFiber: ", String.valueOf(round(salarioFiber, 2)));
+        //  double salarioFiber = totalDevengado - deducciones;
+        // Log.i("salarioFiber: ", String.valueOf(round(salarioFiber, 2)));
 
 
 
         return prestaciones;
+    }
+
+    public void ajusteTablasSepe(double sbSepe) {
+        // precioSepeMes=0;
+        if (precioSepeMes > sbSepe) {
+            precioSepeMes = sbSepe;
+            Log.i("precioSepeMes: ", String.valueOf(round(precioSepeMes, 2)));
+        } else {
+            Log.i("precioSepeMes: ", String.valueOf(round(precioSepeMes, 2)));
+        }
+        //precioSeoemes;
+
     }
 
 }

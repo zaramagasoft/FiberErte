@@ -39,13 +39,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FragmentNormal f = new FragmentNormal();
+                LogicaNormal l = new LogicaNormal();
                 boolean b = f.ComprobrarEdittext();
                 Log.i("MainACtiv ", String.valueOf(b));
                 String m;
                 if (!b){
                     m="revisa campos vacios, y vuelve a intentar";
                 }else {
-                    LogicaNormal l = new LogicaNormal();
+
                     datos = new String[6];
                     datos[0] = FragmentNormal.grupoN;
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, m, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                // ((MainActivity)getActivity()).refrescarListaResinas();
+
 
             }
         });
