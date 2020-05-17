@@ -207,7 +207,7 @@ public class LogicaNormal {
         //quinquenios
         double quinquenios = ((salarioDia * 0.02) * getQuin()) * (diasFiber - getDias());
         // Log.i("incentivosData: ", String.valueOf(round (getDias(),2)));
-        Log.i("incentivos: ", String.valueOf(round(quinquenios, 2)));
+        Log.i("quinquenios: ", String.valueOf(round(quinquenios, 2)));
 
         //prima Produccion
         double prima = salarioBruto * 0.14;
@@ -234,6 +234,23 @@ public class LogicaNormal {
         Log.i("baseIrpf: ", String.valueOf(round(baseIrpf, 2)));
 
         //deduciones, aqui me quedo
+
+        double CC = baseCC * 0.047;
+        double des = baseCC * 0.0155;
+        double form = baseCC * 0.001;
+
+        double deducciones = CC + des + form + (baseIrpf * (irpf / 100));
+        Log.i("deducciones: ", String.valueOf(round(deducciones, 2)));
+
+        //compensacionERTE
+
+
+        //liquido fibertecnic
+
+        double salarioFiber = totalDevengado - deducciones;
+        Log.i("salarioFiber: ", String.valueOf(round(salarioFiber, 2)));
+
+
 
         return prestaciones;
     }
