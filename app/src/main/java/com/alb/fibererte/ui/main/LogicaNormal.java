@@ -254,7 +254,7 @@ public class LogicaNormal {
 
         //me quedo en la compensacion ERTE
 
-
+        compensacionErte(salarioDia);
 
         return prestaciones;
     }
@@ -284,6 +284,21 @@ public class LogicaNormal {
         }
         //precioSeoemes;
 
+    }
+
+    public void compensacionErte(double salarioDia) {
+        Log.i("salarioDia", String.valueOf(round(salarioDia, 2)));
+        double diarioSepe = precioSepeMes / 30;
+        double reteSepe = diarioSepe * (irpf / 100);
+        Log.i("CreteSepe: ", String.valueOf(round(reteSepe, 2)));
+        double sepeDia = diarioSepe - reteSepe;
+        Log.i("sepeDia: ", String.valueOf(round(sepeDia, 2)));
+        double compensacionDiaria = (salarioDia * 0.8) - (diarioSepe);
+        Log.i("compensacionDiaria: ", String.valueOf(round(compensacionDiaria, 2)));
+        double compErte = compensacionDiaria * getDias();
+        Log.i("compenERTE: ", String.valueOf(round(compErte, 2)));
+
+        //me quedo con la compensacionErtefiber ya calculada solo mostrar totales
     }
 
 }
