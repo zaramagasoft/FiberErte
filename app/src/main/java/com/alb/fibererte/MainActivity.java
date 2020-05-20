@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
+        final TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                int i = tabs.getSelectedTabPosition(); //detectar la tab activa al pulsar el fab button
+                Log.i("fabTabsss ", String.valueOf(i));
                 FragmentNormal f = new FragmentNormal();
                 LogicaNormal l = new LogicaNormal();
                 boolean b = f.ComprobrarEdittext();
@@ -45,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 String m;
                 if (!b){
                     m="revisa campos vacios, y vuelve a intentar";
-                }else {
+                } else if (i == 1) {
+                    m = "calculo en desarrollo";
+                } else {
 
                     datos = new String[6];
                     datos[0] = FragmentNormal.grupoN;
@@ -56,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
                     datos[4] = FragmentNormal.diasN;
                     datos[5] = FragmentNormal.irpfN;
                     String[] valores = l.PasarValoresCalculo(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);
+                    String[] prestaciones = new String[3];
+                    prestaciones = l.CalcularPrestaciones();
+                    //me quedo en plasmar prestaciones en layout FragmentNormal
+                    f.mostrarCalculos(prestaciones);
                     m="Cáculo Aproximado de Ingresos";
                     Log.i("fabButoon ", datos[5].toString());
                 }

@@ -188,7 +188,7 @@ public class LogicaNormal {
     }
 
     public String[] CalcularPrestaciones() {
-        String[] prestaciones = new String[1];
+        String[] prestaciones = new String[3];
         //me quedo en calcular prestaciones
 
         double diasFiber=30;
@@ -262,7 +262,9 @@ public class LogicaNormal {
 
         pagoFiber = (salarioBase + incentivos + quinquenios + prima + plusTurnos + compERTE) - deducciones;
         Log.i("pagoFiber: ", String.valueOf(round(pagoFiber, 2)));
-
+        prestaciones[0] = String.valueOf(round(pagoSepe, 2));
+        prestaciones[1] = String.valueOf(round(pagoFiber, 2));
+        prestaciones[2] = String.valueOf(round((pagoSepe + pagoFiber), 2));
 
         return prestaciones;
     }
@@ -303,10 +305,15 @@ public class LogicaNormal {
         Log.i("sepeDia: ", String.valueOf(round(sepeDia, 2)));
 
         double compensacionDiaria = (salarioDia * 0.8) - (diarioSepe);
-        double reteCompesacion = compensacionDiaria * ((irpf + 6.35) / 100);
-        Log.i("reteCompensacion ", String.valueOf(round(reteCompesacion, 2)));
-        compensacionDiaria = compensacionDiaria - reteCompesacion;
-        Log.i("compensacionDiaria: ", String.valueOf(round(compensacionDiaria, 2)));
+        if (compensacionDiaria < 0) {
+            compensacionDiaria = 0;
+        } else {
+            double reteCompesacion = compensacionDiaria * ((irpf + 6.35) / 100);
+            Log.i("reteCompensacion ", String.valueOf(round(reteCompesacion, 2)));
+            compensacionDiaria = compensacionDiaria - reteCompesacion;
+            Log.i("compensacionDiaria: ", String.valueOf(round(compensacionDiaria, 2)));
+        }
+
         double compErte = compensacionDiaria * getDias();
         Log.i("compenERTE: ", String.valueOf(round(compErte, 2)));
         pagoSepe = sepeDia * getDias();

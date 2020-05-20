@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -47,6 +48,7 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
     static EditText editQuin;
     static EditText editDias;
     static EditText editIrpf;
+    static TextView textSepe, textFiber, texTotal;
 
     public static String grupoN, turnoN, hijosN, quinN, diasN, irpfN;
 
@@ -97,6 +99,9 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
         editQuin=(EditText) rootView.findViewById(R.id.editQuinquenios);
         editDias=(EditText) rootView.findViewById(R.id.editDias);
         editIrpf=(EditText) rootView.findViewById(R.id.editirpf);
+        textFiber = (TextView) rootView.findViewById(R.id.textFiber);
+        textSepe = (TextView) rootView.findViewById(R.id.textSepe);
+        texTotal = (TextView) rootView.findViewById(R.id.textTotal);
         //Log.d("Valor ET", editQuin.getText().toString());
 
         GestionEditText();
@@ -283,10 +288,14 @@ public class FragmentNormal extends Fragment implements AdapterView.OnItemSelect
 
     }
 
-    public double CalcularFiber(){
+    public boolean mostrarCalculos(String[] prestaciones) {
+        textFiber.setText("");
+        textSepe.setText("");
+        texTotal.setText("");
+        textSepe.setText("Cantidad SEPE :  " + prestaciones[0]);
+        textFiber.setText("Cantidad Fiber :  " + prestaciones[1]);
+        texTotal.setText("Total: " + prestaciones[2]);
 
-
-
-        return cantidadFiber;
+        return true;
     }
 }
