@@ -30,6 +30,9 @@ public class LogicaNormal {
     public double dias = 0;
     public double irpf = 0;
 
+    public double pagoSepe;
+    public double pagoFiber;
+
     public LogicaNormal() {
 
     }
@@ -246,6 +249,7 @@ public class LogicaNormal {
 
         //compensacionERTE
 
+        // double pagoSepe=
         double sb = salarioDia * 30;
         double baseRSepe = baseReguladoraSepe(sb);
         double sbSepe = baseRSepe * 0.7;
@@ -254,7 +258,11 @@ public class LogicaNormal {
 
         //me quedo en la compensacion ERTE
 
-        compensacionErte(salarioDia);
+        double compERTE = compensacionErte(salarioDia);
+
+        pagoFiber = (salarioBase + incentivos + quinquenios + prima + plusTurnos + compERTE) - deducciones;
+        Log.i("pagoFiber: ", String.valueOf(round(pagoFiber, 2)));
+
 
         return prestaciones;
     }
@@ -286,19 +294,25 @@ public class LogicaNormal {
 
     }
 
-    public void compensacionErte(double salarioDia) {
+    public double compensacionErte(double salarioDia) {
         Log.i("salarioDia", String.valueOf(round(salarioDia, 2)));
         double diarioSepe = precioSepeMes / 30;
-        double reteSepe = diarioSepe * (irpf / 100);
+        double reteSepe = diarioSepe * ((irpf - 1) / 100);
         Log.i("CreteSepe: ", String.valueOf(round(reteSepe, 2)));
         double sepeDia = diarioSepe - reteSepe;
         Log.i("sepeDia: ", String.valueOf(round(sepeDia, 2)));
+
         double compensacionDiaria = (salarioDia * 0.8) - (diarioSepe);
+        double reteCompesacion = compensacionDiaria * ((irpf + 6.35) / 100);
+        Log.i("reteCompensacion ", String.valueOf(round(reteCompesacion, 2)));
+        compensacionDiaria = compensacionDiaria - reteCompesacion;
         Log.i("compensacionDiaria: ", String.valueOf(round(compensacionDiaria, 2)));
         double compErte = compensacionDiaria * getDias();
         Log.i("compenERTE: ", String.valueOf(round(compErte, 2)));
-
+        pagoSepe = sepeDia * getDias();
+        Log.i("pagoSepe: ", String.valueOf(round(pagoSepe, 2)));
         //me quedo con la compensacionErtefiber ya calculada solo mostrar totales
+        return compErte;
     }
 
 }
