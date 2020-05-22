@@ -32,6 +32,7 @@
             android:maxLines="1"
             android:background="@drawable/edit_borde"
             android:digits="1234567890."
+            android:maxLength="5"
             android:inputType="numberSigned"
             android:imeOptions="actionDone">
 

@@ -2,6 +2,7 @@ package com.alb.fibererte.fragments;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
+import com.alb.fibererte.MinMaxDoubleFilter;
 import com.alb.fibererte.R;
 
 /**
@@ -73,6 +75,8 @@ public class FragmentReducc extends Fragment {
 
     private void gestionEditText() {
         // editReduccion.setFilters( new InputFilter[]{ new MinMaxFilter( "0" , "100" )}) ;
+        editReduccion.setFilters(new InputFilter[]{new MinMaxDoubleFilter("0", "100")});
+
         editReduccion.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
