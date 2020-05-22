@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 String m;
                 if (!b){
                     m="revisa campos vacios, y vuelve a intentar";
+                    tabs.getTabAt(0).select();
                 } else if (i == 1) {
                     m = "calculo en desarrollo";
                 } else {

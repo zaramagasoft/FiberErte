@@ -75,7 +75,8 @@ public class FragmentReducc extends Fragment {
 
     private void gestionEditText() {
         // editReduccion.setFilters( new InputFilter[]{ new MinMaxFilter( "0" , "100" )}) ;
-        editReduccion.setFilters(new InputFilter[]{new MinMaxDoubleFilter("0", "100")});
+        editReduccion.setFilters(new InputFilter[]{new MinMaxDoubleFilter("0", "100"), new InputFilter.LengthFilter(5) {
+        }});
 
         editReduccion.addTextChangedListener(new TextWatcher() {
             @Override
