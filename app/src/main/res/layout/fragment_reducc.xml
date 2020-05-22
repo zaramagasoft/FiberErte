@@ -12,4 +12,30 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reducción %: "
+            android:textColor="@color/cardview_dark_background" />
+
+        <EditText
+            android:id="@+id/editReduccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="100%"
+            android:maxLines="1"
+            android:background="@drawable/edit_borde"
+            android:digits="1234567890."
+            android:inputType="numberSigned"
+            android:imeOptions="actionDone">
+
+        </EditText>
+    </LinearLayout>
+
 </FrameLayout>

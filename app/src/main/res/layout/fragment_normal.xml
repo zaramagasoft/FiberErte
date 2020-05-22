@@ -103,7 +103,7 @@
                 android:maxLength="1"
                 android:maxLines="1"
                 android:paddingTop="10dp"
-
+                android:imeOptions="actionDone"
                 android:paddingBottom="10dp"
                 android:textColor="#8A2424"
                 android:textSize="20dp"
@@ -142,7 +142,7 @@
             android:maxLength="2"
             android:maxLines="1"
             android:paddingTop="10dp"
-
+            android:imeOptions="actionDone"
             android:paddingBottom="10dp"
             android:textColor="#8A2424"
             android:textSize="20dp"
@@ -173,7 +173,7 @@
             android:maxLength="2"
             android:maxLines="1"
             android:paddingTop="10dp"
-
+            android:imeOptions="actionDone"
             android:paddingBottom="10dp"
             android:textColor="#8A2424"
             android:textSize="20dp"
