@@ -54,11 +54,13 @@ public class LogicaNormal {
     }
 
     public double getDias() {
+
+
         return dias;
     }
 
     public void setDias(double dias) {
-        this.dias = dias;
+        this.dias = Math.ceil(dias * 1.25);//redondeo al multiplicar por  1.25
     }
 
     public double getIrpf() {
