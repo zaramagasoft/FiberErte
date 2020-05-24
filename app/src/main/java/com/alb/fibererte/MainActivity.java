@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alb.fibererte.fragments.FragmentNormal;
+import com.alb.fibererte.fragments.FragmentReducc;
 import com.alb.fibererte.ui.main.LogicaNormal;
 import com.alb.fibererte.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,7 +18,11 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
 
-    String[] datos;
+    public String[] datos;
+
+    public String[] getDatos() {
+        return datos;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 int i = tabs.getSelectedTabPosition(); //detectar la tab activa al pulsar el fab button
                 Log.i("fabTabsss ", String.valueOf(i));
                 FragmentNormal f = new FragmentNormal();
+                FragmentReducc rj = new FragmentReducc();
                 LogicaNormal l = new LogicaNormal();
                 boolean b = f.ComprobrarEdittext();
                 Log.i("MainACtiv ", String.valueOf(b));
@@ -48,18 +54,21 @@ public class MainActivity extends AppCompatActivity {
                 if (!b){
                     m="revisa campos vacios, y vuelve a intentar";
                     tabs.getTabAt(0).select();
-                } else if (i == 1) {
+                } else if (i == 1 && FragmentReducc.editReduccion.getText().toString().isEmpty()) {
+                    FragmentReducc.redu = 1;
+                    Log.i("MainAct redu ", String.valueOf(FragmentReducc.redu));
                     m = "calculo en desarrollo";
+
+                } else if (i == 1 && FragmentReducc.redu < 1) {
+                    Log.i("MainAct redu ", "hay valor metido");
+                    m = "calculo en desarrollo " + FragmentReducc.redu;
+                    recogidaDatos();
+                    String[] valores = l.PasarValoresCalculo(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);
+                    l.calculoReduccion(FragmentReducc.redu);
+
                 } else {
 
-                    datos = new String[6];
-                    datos[0] = FragmentNormal.grupoN;
-
-                    datos[1] = FragmentNormal.turnoN;
-                    datos[2] = FragmentNormal.hijosN;
-                    datos[3] = FragmentNormal.quinN;
-                    datos[4] = FragmentNormal.diasN;
-                    datos[5] = FragmentNormal.irpfN;
+                    recogidaDatos();
                     String[] valores = l.PasarValoresCalculo(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);
                     String[] prestaciones = new String[3];
                     prestaciones = l.CalcularPrestaciones();
@@ -80,7 +89,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void recogidaDatos() {
+        datos = new String[6];
+        datos[0] = FragmentNormal.grupoN;
 
+        datos[1] = FragmentNormal.turnoN;
+        datos[2] = FragmentNormal.hijosN;
+        datos[3] = FragmentNormal.quinN;
+        datos[4] = FragmentNormal.diasN;
+        datos[5] = FragmentNormal.irpfN;
+    }
 
 
 }

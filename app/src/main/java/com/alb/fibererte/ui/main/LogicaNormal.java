@@ -33,6 +33,8 @@ public class LogicaNormal {
     public double pagoSepe;
     public double pagoFiber;
 
+    public double bsRedu;
+
     public LogicaNormal() {
 
     }
@@ -185,7 +187,8 @@ public class LogicaNormal {
         this.setDias(Double.parseDouble(diasErte));
         this.setIrpf(Double.parseDouble(irpf));
 
-        CalcularPrestaciones();
+
+        //  CalcularPrestaciones();
         return prestaciones;
     }
 
@@ -255,6 +258,7 @@ public class LogicaNormal {
         double sb = salarioDia * 30;
         double baseRSepe = baseReguladoraSepe(sb);
         double sbSepe = baseRSepe * 0.7;
+        bsRedu = baseCC;
         Log.i("sbSepeX: ", String.valueOf(round(sbSepe, 2)));
         ajusteTablasSepe(sbSepe);
 
@@ -322,6 +326,22 @@ public class LogicaNormal {
         Log.i("pagoSepe: ", String.valueOf(round(pagoSepe, 2)));
         //me quedo con la compensacionErtefiber ya calculada solo mostrar totales
         return compErte;
+    }
+
+    public String[] calculoReduccion(double redu) {
+
+        String[] prestaciones = this.CalcularPrestaciones();
+
+        Log.i("calcR bsRedu: ", String.valueOf(round(bsRedu, 2)));
+        ajusteTablasSepe(bsRedu * 0.7);
+        Log.i("calcR precioSepeMes: ", String.valueOf(round(precioSepeMes, 2)));
+        String[] rJ = new String[2];
+        double sepeDia = precioSepeMes / 30;
+        double pagoSepeReducc = sepeDia * getDias();
+        double retenSepeReducc = pagoSepeReducc * (irpf + 4.7);
+        double PGpagoSepeReducc = pagoSepeReducc - retenSepeReducc;
+        //me quedo a falta de calcular prestacionFiber
+        return rJ;
     }
 
 }
