@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -27,6 +28,7 @@ public class FragmentReducc extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     public static EditText editReduccion;
     public static double redu;
+    static TextView textSepeR, textFiberR, texTotalR;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -69,6 +71,9 @@ public class FragmentReducc extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_reducc, container, false);
         editReduccion = (EditText) rootView.findViewById(R.id.editReduccion);
+        textFiberR = (TextView) rootView.findViewById(R.id.textFiberRedu);
+        textSepeR = (TextView) rootView.findViewById(R.id.textSepeRedu);
+        texTotalR = (TextView) rootView.findViewById(R.id.textTotalRedu);
         gestionEditText();
         return rootView;
     }
@@ -108,4 +113,12 @@ public class FragmentReducc extends Fragment {
 
     }
 
+    public void mostrarCalculos(String[] resRedu) {
+        textFiberR.setText("");
+        textSepeR.setText("");
+        texTotalR.setText("");
+        textSepeR.setText("Cantidad SEPE :  " + resRedu[0]);
+        textFiberR.setText("Cantidad Fiber :  " + resRedu[1]);
+        texTotalR.setText("Total: " + resRedu[2]);
+    }
 }

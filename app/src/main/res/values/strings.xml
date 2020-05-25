@@ -5,7 +5,7 @@
     <string name="tituloNormal">Nómina Fiber</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">En desarrollo</string>
+    <string name="hello_blank_fragment">En desarrollo, cálculos orientativos</string>
     <string-array name="categorias">
         <item>G1B</item>
         <item>G2</item>

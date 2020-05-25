@@ -61,10 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (i == 1 && FragmentReducc.redu < 1) {
                     Log.i("MainAct redu ", "hay valor metido");
-                    m = "calculo en desarrollo " + FragmentReducc.redu;
+                    m = "calculo en desarrollo, PRECAUCIÓN!!! ";
                     recogidaDatos();
                     String[] valores = l.PasarValoresCalculo(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);
-                    l.calculoReduccion(FragmentReducc.redu);
+                    String[] resRedu = l.calculoReduccion(FragmentReducc.redu);
+                    rj.mostrarCalculos(resRedu);
 
                 } else {
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     prestaciones = l.CalcularPrestaciones();
                     //me quedo en plasmar prestaciones en layout FragmentNormal
                     f.mostrarCalculos(prestaciones);
-                    m="Cáculo Aproximado de Ingresos";
+                    m = "Cáculo Aproximado de Ingresos, PRECAUCIÓN";
                     Log.i("fabButoon ", datos[5].toString());
                 }
                 Snackbar.make(view, m, Snackbar.LENGTH_LONG)

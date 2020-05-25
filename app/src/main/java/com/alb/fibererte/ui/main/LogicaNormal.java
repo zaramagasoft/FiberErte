@@ -34,6 +34,8 @@ public class LogicaNormal {
     public double pagoFiber;
 
     public double bsRedu;
+    public double totalPagoSepeReduccion;
+    public double totalPagoFiberReduccion, prorrateoRedu;
 
     public LogicaNormal() {
 
@@ -330,18 +332,133 @@ public class LogicaNormal {
 
     public String[] calculoReduccion(double redu) {
 
-        String[] prestaciones = this.CalcularPrestaciones();
 
+        String[] prestaciones = this.CalcularPrestacionesReducc();
+        Log.i("calcR redu: ", String.valueOf(round(redu, 2)));
         Log.i("calcR bsRedu: ", String.valueOf(round(bsRedu, 2)));
-        ajusteTablasSepe(bsRedu * 0.7);
+        double bsCorr = (bsRedu * redu);
+        double bs2 = bsCorr + (bsCorr * (1 - redu));
+        Log.i("calcR realBs: ", String.valueOf(round(bs2, 2)));
+        ajusteTablasSepe(bs2 * 0.7);
         Log.i("calcR precioSepeMes: ", String.valueOf(round(precioSepeMes, 2)));
-        String[] rJ = new String[2];
+        String[] rJ = new String[3];
         double sepeDia = precioSepeMes / 30;
+        Log.i("calcR sepeDia: ", String.valueOf(round(sepeDia, 2)));
         double pagoSepeReducc = sepeDia * getDias();
-        double retenSepeReducc = pagoSepeReducc * (irpf + 4.7);
+        double retenSepeReducc = pagoSepeReducc * ((irpf + 4.7) / 100);
         double PGpagoSepeReducc = pagoSepeReducc - retenSepeReducc;
         //me quedo a falta de calcular prestacionFiber
+        // double totalSepeReduccion=PGpagoSepeReducc*getDias();
+        Log.i("totalSepeReducc ", String.valueOf(round(PGpagoSepeReducc, 2)));
+        totalPagoSepeReduccion = PGpagoSepeReducc;
+        calculoPagoFiberRedu(bsCorr, redu);
+        rJ[0] = String.valueOf(round(totalPagoSepeReduccion, 2));
+        rJ[1] = String.valueOf(round(totalPagoFiberReduccion, 2));
+        rJ[2] = String.valueOf(round(totalPagoFiberReduccion + totalPagoSepeReduccion, 2));
         return rJ;
+    }
+
+    private void calculoPagoFiberRedu(double bscorr, double redu) {
+        Log.i("calcFiberRedu: ", String.valueOf(round(bscorr, 2)));
+
+        //aqui hay que hacer decuentos y clacular los dias
+
+        double pagoFiberBccRedu = (bscorr * (30 - getDias())) / 30;
+        Log.i("calcFiberReduBcc: ", String.valueOf(round(pagoFiberBccRedu, 2)));
+        //deducciones
+        double CC = pagoFiberBccRedu * 0.047;
+        double des = pagoFiberBccRedu * 0.0155;
+        double form = pagoFiberBccRedu * 0.001;
+        double baseIrpf = (pagoFiberBccRedu) - ((prorrateoRedu * redu) * 17 / 30);
+        double irpfR = baseIrpf * (irpf / 100);
+        double deducciones = CC + des + form + (baseIrpf * (irpf / 100));
+        totalPagoFiberReduccion = baseIrpf - deducciones;
+
+
+    }
+
+    private String[] CalcularPrestacionesReducc() {
+        String[] prestaciones = new String[3];
+        //me quedo en calcular prestaciones
+
+        double diasFiber = 30;
+        double salarioDia = precioGrupo / 420;
+
+        Log.i("salarioDia: ", String.valueOf(round(salarioDia, 2)));
+
+        Double salarioBruto = salarioDia * (diasFiber);
+        Log.i("salarioBruto: ", String.valueOf(round(salarioBruto, 2)));
+
+        //salario base
+        double salarioBase = salarioBruto * 0.66;
+        Log.i("salarioBase: ", String.valueOf(round(salarioBase, 2)));
+
+        //incentivos
+        double incentivos = salarioBruto * 0.2;
+        Log.i("incentivos: ", String.valueOf(round(incentivos, 2)));
+
+        //quinquenios
+
+        double quinquenios = ((salarioDia * 0.02) * getQuin()) * (diasFiber);
+        // Log.i("incentivosData: ", String.valueOf(round (getDias(),2)));
+        Log.i("quinquenios: ", String.valueOf(round(quinquenios, 2)));
+
+        //prima Produccion
+        double prima = salarioBruto * 0.14;
+        Log.i("primaP: ", String.valueOf(round(prima, 2)));
+
+        //plusturnos
+
+        double plusTurnos = (precioTurno / 30) * (diasFiber);
+        Log.i("plusTurnos: ", String.valueOf(round(plusTurnos, 2)));
+
+        //total devengado
+        double totalDevengado = salarioBase + incentivos + quinquenios + prima + plusTurnos;
+        Log.i("totalDevengado: ", String.valueOf(round(totalDevengado, 2)));
+
+        //prorrateo
+        double prorrateo = (salarioBase + incentivos + quinquenios + prima) / 6;
+        Log.i("prorrateo: ", String.valueOf(round(prorrateo, 2)));
+
+        prorrateoRedu = prorrateo;
+        //baseCC
+        double baseCC = totalDevengado + prorrateo;
+        Log.i("baseCC: ", String.valueOf(round(baseCC, 2)));
+
+        //baseIrpf
+        double baseIrpf = totalDevengado;
+        Log.i("baseIrpf: ", String.valueOf(round(baseIrpf, 2)));
+
+        //deduciones, aqui me quedo
+
+        double CC = baseCC * 0.047;
+        double des = baseCC * 0.0155;
+        double form = baseCC * 0.001;
+
+        double deducciones = CC + des + form + (baseIrpf * (irpf / 100));
+        Log.i("deducciones: ", String.valueOf(round(deducciones, 2)));
+
+        //compensacionERTE
+
+        // double pagoSepe=
+        double sb = salarioDia * 30;
+        double baseRSepe = baseReguladoraSepe(sb);
+        double sbSepe = baseRSepe * 0.7;
+        bsRedu = baseCC;
+        Log.i("sbSepeX: ", String.valueOf(round(sbSepe, 2)));
+        ajusteTablasSepe(sbSepe);
+
+        //me quedo en la compensacion ERTE
+
+        double compERTE = compensacionErte(salarioDia);
+
+        pagoFiber = (salarioBase + incentivos + quinquenios + prima + plusTurnos + compERTE) - deducciones;
+        Log.i("pagoFiber: ", String.valueOf(round(pagoFiber, 2)));
+        prestaciones[0] = String.valueOf(round(pagoSepe, 2));
+        prestaciones[1] = String.valueOf(round(pagoFiber, 2));
+        prestaciones[2] = String.valueOf(round((pagoSepe + pagoFiber), 2));
+
+        return prestaciones;
     }
 
 }
