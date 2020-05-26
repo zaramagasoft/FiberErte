@@ -369,7 +369,7 @@ public class LogicaNormal {
         double CC = pagoFiberBccRedu * 0.047;
         double des = pagoFiberBccRedu * 0.0155;
         double form = pagoFiberBccRedu * 0.001;
-        double baseIrpf = (pagoFiberBccRedu) - ((prorrateoRedu * redu) * 17 / 30);
+        double baseIrpf = (pagoFiberBccRedu) - ((prorrateoRedu * redu) * (30 - getDias()) / 30);
         double irpfR = baseIrpf * (irpf / 100);
         double deducciones = CC + des + form + (baseIrpf * (irpf / 100));
         totalPagoFiberReduccion = baseIrpf - deducciones;
